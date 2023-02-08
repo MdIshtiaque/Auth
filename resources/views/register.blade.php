@@ -32,9 +32,18 @@
 
                     <div class="card bg-glass">
                         <div class="card-body px-4 py-5 px-md-5">
-                            <form action="" method="post">
+                            <form action="/valid_registration" method="post">
+                                @csrf
                                 @include('partial.form')
                             </form>
+
+                            {{-- Alert for registration done succesfully --}}
+                            @if ($message = Session::get('success'))
+                                <div class="alert alert-info">
+                                    {{ $message }}
+                                </div>
+                            @endif
+
                         </div>
                     </div>
                 </div>
