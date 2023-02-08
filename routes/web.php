@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +22,8 @@ Route::get('/', function () {
 
 Route::get('/registration',[RegisterController::class, 'registration'])->name('registration');
 Route::post('/valid_registration',[RegisterController::class, 'valid_registration'])->name('valid_registration');
+
+Route::get('/login',[LoginController::class, 'login'])->name('login');
+Route::post('/valid_login',[LoginController::class, 'valid_login'])->name('valid_login');
+Route::get('/dashboard',[DashboardController::class, 'dashboard'])->name('dashboard');
+
