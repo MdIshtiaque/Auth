@@ -47,26 +47,11 @@ class RegisterController extends Controller
 
          $credentials = $request->only('email', 'password');
 
-        //  $Login = Login::where('email', $credentials['email'])->first();
 
-        //  if ($Login && \Hash::check($credentials['password'], $Login->password)) {
-        //      Auth::login($Login);
-
-        //      return redirect()->intended('dashboard');
-        //  }
-
-        // dd($credentials, Auth::attempt($credentials));
-        // // info('Check', [$credentials]);
         if (Auth::attempt($credentials)) {
             return redirect()->intended('dashboard');
         }
 
-    //     $Register = Register::where("email", $request->email);
-    //     $RegisterP = Register::where("password", $request->password);
-    //     if($Register && $RegisterP == TRUE){
-
-    //         return redirect()->intended('dashboard');
-    //     }
         return redirect('login')->with('success', 'Login detailes are not valid');
      }
 

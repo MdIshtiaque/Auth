@@ -17,9 +17,9 @@ class LoginController extends Controller
         return view('login');
     }
 
-    public function valid_login(Request $request)
-    {
-        // $request->validate([
+    // public function valid_login(Request $request)
+    // {
+    //     // $request->validate([
         //     'email' => 'required',
         //     'password' => 'required',
         // ]);
@@ -47,5 +47,5 @@ class LoginController extends Controller
     //         return redirect()->intended('dashboard');
     //     }
     //     return redirect('login')->with('success', 'Login detailes are not valid');
-     }
+    //  }
 }
