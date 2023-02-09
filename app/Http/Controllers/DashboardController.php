@@ -10,7 +10,7 @@ class DashboardController extends Controller
 {
     public function dashboard()
     {
-        if(Auth::check())
+        if(!Auth::check())
         {
             return view('dashboard');
         }

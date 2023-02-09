@@ -24,6 +24,7 @@ Route::get('/registration',[RegisterController::class, 'registration'])->name('r
 Route::post('/valid_registration',[RegisterController::class, 'valid_registration'])->name('valid_registration');
 
 Route::get('/login',[LoginController::class, 'login'])->name('login');
-Route::post('/valid_login',[LoginController::class, 'valid_login'])->name('valid_login');
+Route::post('/valid_login',[RegisterController::class, 'valid_login'])->name('valid_login');
 Route::get('/dashboard',[DashboardController::class, 'dashboard'])->name('dashboard');
+Route::get('/logout',[DashboardController::class, 'logout'])->name('logout');
 
