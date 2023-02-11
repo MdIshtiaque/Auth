@@ -8,19 +8,20 @@ use Illuminate\Support\Facades\Session;
 
 class DashboardController extends Controller
 {
-    public function dashboard()
+    public function dashboard(Request $request)
     {
-        if(!Auth::check())
+        //dd(Auth::check());
+        if($request->session()->has('user'))
         {
             return view('dashboard');
         }
         return redirect('login')->with('success', 'You are not allowed to access');
     }
 
-    function logout()
+    function logout(Request $request)
     {
-        Session::flush();
-        Auth::logout();
+        $request->session()->forget('user');
+        $request->session()->flush();
 
         return redirect('login');
 

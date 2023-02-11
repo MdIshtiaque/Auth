@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
 use App\Models\Register;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+
 
 
 class RegisterController extends Controller
@@ -23,7 +25,7 @@ class RegisterController extends Controller
         $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users',
             'password' => 'required',
 
         ]);
@@ -38,23 +40,28 @@ class RegisterController extends Controller
         you can login');
     }
 
-    public function valid_login(Request $request)
+    public function valid_login(LoginRequest $request)
     {
-        $request->validate([
-            'email' => 'required',
-            'password' => 'required',
-        ]);
+        // $request->validate([
+        //     'email' => 'required',
+        //     'password' => 'required',
+        // ]);
 
-         $credentials = $request->only('email', 'password');
+        //  $credentials = $request->only('email', 'password');
+        //  info('Check', $credentials);
 
-
-        if (Auth::attempt($credentials)) {
+        $registration = Register::where('email', $request->email)->first();
+        //dd(Hash::check($request->password, $registration->password));
+        if ($registration && Hash::check($request->password, $registration->password)) {
+            $request->session()->put('user', $registration);
             return redirect()->intended('dashboard');
         }
 
+        //dd(Auth::attempt($credentials));
+        // if (Auth::attempt($credentials)) {
+        //     return redirect()->intended('dashboard');
+        // }
+
         return redirect('login')->with('success', 'Login detailes are not valid');
-     }
-
-
-
+    }
 }
