@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/registration',[RegisterController::class, 'registration'])->name('registration');
+Route::get('/',[RegisterController::class, 'registration'])->name('registration');
 Route::post('/valid_registration',[RegisterController::class, 'valid_registration'])->name('valid_registration');
 
 Route::get('/login',[LoginController::class, 'login'])->name('login');

@@ -11,6 +11,7 @@
 
 <body>
     <section class="background-radial-gradient overflow-hidden">
+        @include('include.navbar')
         {{-- Alert for registration done succesfully --}}
         @if ($message = Session::get('success'))
             <div class="alert alert-info">
@@ -18,6 +19,8 @@
             </div>
         @endif
         @include('include.style')
+
+
 
         <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
             <div class="row gx-lg-5 align-items-center mb-5">
@@ -46,6 +49,9 @@
                 </div>
             </div>
         </div>
+
+
+
     </section>
 </body>
 
